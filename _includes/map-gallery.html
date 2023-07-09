@@ -1,0 +1,21 @@
+
+
+<div class="image-gallery">
+  {% assign sorted = site.static_files | sort: 'date' | reverse %}
+  {% for file in sorted %}
+    {% assign include_folder = '/maps/thumbs/' %}
+    {% if file.path contains include_folder %}
+      {% if file.extname == '.jpg'  or file.extname == '.png' %}
+        {% assign filenameparts = file.path | split: "/" %}
+        {% assign filename = filenameparts | last | replace: file.extname, "" %}
+
+        {% assign img_path = '/maps/fullsize/' | append: filename | append: ".jpg" %}
+        <div class="box">
+          <a href="{{ img_path | relative_url }}" title="{{ filename }}">
+            <img src="{{ site.baseurl }}{{ include_folder }}{{ file.name }}" alt="{{ filename }}" class="img-gallery" />
+          </a>
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</div>

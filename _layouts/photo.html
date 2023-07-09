@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<style>
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+</style>
+<div class="image-container">
+    <img src="{{ page.image_path | relative_url }}" alt="{{ page.title }}">
+
+</div>
+<a href="javascript:history.back()" class="back-button">Back</a>

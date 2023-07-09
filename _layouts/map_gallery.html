@@ -1,0 +1,40 @@
+---
+layout: page
+---
+
+<style>
+.image-gallery2 img {
+  margin-right: 10px;
+  padding: 10px 0;
+}
+.image-gallery2 .row {
+  justify-content: center;
+}
+.image-gallery2 .row .col-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+<h1><p style="text-align: center;">{{ page.title }}</p></h1>
+
+<div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
+  <div class="row">
+    <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+      <p>The maps presented below were generated using Python to create GeoPackage files. These files were subsequently imported into QGIS to create print-ready maps.</p>
+      <div class="image-gallery2">
+        <div class="row justify-content-center">
+          {% for image in page.image_list %}
+          {% assign imageFilename = image.name | split: '.' | first %}
+          <div class="col-6 col-md-4 col-lg-3">
+            <a href="{{ imageFilename | prepend: '/map_pages/' | relative_url }}">
+              <img src="{{ image.name | prepend: '/maps/thumbs/' | relative_url }}" alt="{{ image.title }}">
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
